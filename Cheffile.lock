@@ -34,7 +34,7 @@ GIT
   remote: https://github.com/flaccid/cookbooks
   path: cookbooks/php_app
   ref: master
-  sha: 0c99f7d7c5fc4cffe415e438512b58f89b7c2062
+  sha: 6ee9d9ba41497c24b4ea8cbea512bf0fc3401d62
   specs:
     php_app (0.1.0)
       application (>= 0.0.0)
