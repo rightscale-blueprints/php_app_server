@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'application',
+  :git => 'https://github.com/opscode-cookbooks/application',
+  :ref => 'master'
+  
+cookbook 'application_php',
+  :git => 'https://github.com/opscode-cookbooks/application_php',
+  :ref => 'master'
+  
+cookbook 'php_app',
+  :git => 'https://github.com/flaccid/cookbooks',
+  :path => 'cookbooks/php_app',
+  :ref => 'master'
