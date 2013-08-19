@@ -1,3 +1,3 @@
 {
-  "run_list": [ "recipe[php_app]" ]
+  "run_list": [ "system", "recipe[php_app]" ]
 }
