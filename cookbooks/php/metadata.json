@@ -1,52 +1,52 @@
 {
-  "version": "1.1.8",
-  "replacing": {
+  "providing": {
   },
+  "license": "Apache 2.0",
+  "name": "php",
+  "recipes": {
+    "php::package": "Installs php using packages.",
+    "php::module_fileinfo": "Install the php5-fileinfo package",
+    "php::module_fpdf": "Install the php-fpdf package",
+    "php::module_pgsql": "Install the php5-pgsql packag",
+    "php::module_memcache": "Install the php5-memcache package",
+    "php::module_mysql": "Install the php5-mysql package",
+    "php::module_ldap": "Install the php5-ldap package",
+    "php::module_sqlite3": "Install the php5-sqlite3 package",
+    "php::module_gd": "Install the php5-gd package",
+    "php::module_curl": "Install the php5-curl package",
+    "php": "Installs php",
+    "php::source": "Installs php from source.",
+    "php::module_apc": "Install the php5-apc package"
+  },
+  "dependencies": {
+    "mysql": ">= 0.0.0",
+    "build-essential": ">= 0.0.0",
+    "xml": ">= 0.0.0"
+  },
+  "attributes": {
+  },
+  "suggestions": {
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "groupings": {
+  },
+  "maintainer": "Opscode, Inc.",
+  "long_description": "",
+  "description": "Installs and maintains php and php modules",
   "conflicting": {
   },
   "recommendations": {
   },
-  "license": "Apache 2.0",
-  "description": "Installs and maintains php and php modules",
-  "groupings": {
-  },
-  "recipes": {
-    "php::module_pgsql": "Install the php5-pgsql packag",
-    "php::module_mysql": "Install the php5-mysql package",
-    "php::source": "Installs php from source.",
-    "php::package": "Installs php using packages.",
-    "php::module_fpdf": "Install the php-fpdf package",
-    "php::module_apc": "Install the php5-apc package",
-    "php::module_ldap": "Install the php5-ldap package",
-    "php": "Installs php",
-    "php::module_curl": "Install the php5-curl package",
-    "php::module_sqlite3": "Install the php5-sqlite3 package",
-    "php::module_memcache": "Install the php5-memcache package",
-    "php::module_gd": "Install the php5-gd package",
-    "php::module_fileinfo": "Install the php5-fileinfo package"
-  },
-  "providing": {
-  },
-  "dependencies": {
-    "build-essential": ">= 0.0.0",
-    "mysql": ">= 0.0.0",
-    "xml": ">= 0.0.0"
-  },
-  "suggestions": {
-  },
-  "attributes": {
+  "replacing": {
   },
   "platforms": {
-    "amazon": ">= 0.0.0",
     "fedora": ">= 0.0.0",
-    "redhat": ">= 0.0.0",
     "ubuntu": ">= 0.0.0",
-    "scientific": ">= 0.0.0",
+    "centos": ">= 0.0.0",
     "debian": ">= 0.0.0",
-    "centos": ">= 0.0.0"
+    "scientific": ">= 0.0.0",
+    "amazon": ">= 0.0.0",
+    "redhat": ">= 0.0.0"
   },
-  "maintainer_email": "cookbooks@opscode.com",
-  "long_description": "",
-  "name": "php",
-  "maintainer": "Opscode, Inc."
+  "version": "1.1.8"
 }

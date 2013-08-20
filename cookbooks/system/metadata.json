@@ -1,111 +1,87 @@
 {
-  "version": "0.0.1",
-  "replacing": {
-  },
-  "conflicting": {
-  },
-  "recommendations": {
-  },
-  "license": "Apache 2.0",
-  "description": "Installs/Configures system elements such as the hostname and timezone.",
-  "groupings": {
-  },
-  "recipes": {
-    "system::update_package_list": "Updates the system's list of packages in the package manager's cache.",
-    "system::default": "Set the system hostname and timezone.",
-    "system::install_packages": "Installs packages to the system with it's native package manager.",
-    "system::hostname": "Sets the system hostname.",
-    "system::upgrade_packages": "Upgrades the system's installed packages.",
-    "system::timezone": "Sets the system timezone."
-  },
   "providing": {
   },
-  "dependencies": {
-    "cron": ">= 0.0.0",
-    "apt": ">= 0.0.0"
+  "license": "Apache 2.0",
+  "name": "system",
+  "recipes": {
+    "system::default": "Set the system hostname and timezone.",
+    "system::update_package_list": "Updates the system's list of packages in the package manager's cache.",
+    "system::upgrade_packages": "Upgrades the system's installed packages.",
+    "system::install_packages": "Installs packages to the system with it's native package manager.",
+    "system::hostname": "Sets the system hostname.",
+    "system::timezone": "Sets the system timezone."
   },
-  "suggestions": {
+  "dependencies": {
+    "apt": ">= 0.0.0",
+    "cron": ">= 0.0.0"
   },
   "attributes": {
     "system/short_hostname": {
-      "display_name": "Short Hostname",
       "required": "recommended",
-      "description": "The short hostname that you would like this node to have, e.g. kryten",
+      "type": "string",
       "recipes": [
         "system::hostname",
         "system::default"
       ],
+      "calculated": false,
       "choice": [
 
       ],
       "default": "localhost",
-      "type": "string",
-      "calculated": false
-    },
-    "system/domain_name": {
-      "display_name": "Domain Name",
-      "required": "recommended",
-      "description": "The domain name that you would like this node to have, e.g. domain.suf. Note: Only set a valid domain name to satisfy the resolution of a FQDN; use ignore:ignore for no domain name.",
-      "recipes": [
-        "system::hostname",
-        "system::default"
-      ],
-      "choice": [
-
-      ],
-      "default": "localdomain",
-      "type": "string",
-      "calculated": false
-    },
-    "system/packages/install": {
-      "display_name": "Install Packages",
-      "required": "optional",
-      "description": "An array of system packages to install with the package resource in execute phase.",
-      "recipes": [
-        "system::install_packages"
-      ],
-      "choice": [
-
-      ],
-      "type": "array",
-      "calculated": false
-    },
-    "system/packages/install_compile_time": {
-      "display_name": "Install Packages Compile Phase",
-      "required": "optional",
-      "description": "An array of system packages to install with the package resource in compile phase.",
-      "recipes": [
-        "system::install_packages"
-      ],
-      "choice": [
-
-      ],
-      "type": "array",
-      "calculated": false
+      "description": "The short hostname that you would like this node to have, e.g. kryten",
+      "display_name": "Short Hostname"
     },
     "system/upgrade_packages": {
-      "display_name": "Upgrade Packages",
       "required": "optional",
-      "description": "Whether or not the system::upgrade_packages recipe will physically update the system's installed packages (in compile time).",
+      "type": "string",
       "recipes": [
         "system::upgrade_packages"
       ],
+      "calculated": false,
       "choice": [
         "true",
         "false"
       ],
       "default": "true",
+      "description": "Whether or not the system::upgrade_packages recipe will physically update the system's installed packages (in compile time).",
+      "display_name": "Upgrade Packages"
+    },
+    "system/packages/install": {
+      "required": "optional",
+      "type": "array",
+      "recipes": [
+        "system::install_packages"
+      ],
+      "calculated": false,
+      "choice": [
+
+      ],
+      "description": "An array of system packages to install with the package resource in execute phase.",
+      "display_name": "Install Packages"
+    },
+    "system/domain_name": {
+      "required": "recommended",
       "type": "string",
-      "calculated": false
+      "recipes": [
+        "system::hostname",
+        "system::default"
+      ],
+      "calculated": false,
+      "choice": [
+
+      ],
+      "default": "localdomain",
+      "description": "The domain name that you would like this node to have, e.g. domain.suf. Note: Only set a valid domain name to satisfy the resolution of a FQDN; use ignore:ignore for no domain name.",
+      "display_name": "Domain Name"
     },
     "system/timezone": {
-      "display_name": "Timezone",
       "required": "optional",
-      "description": "Sets the system time to the timezone of the specified input, which must be a valid zoneinfo/tz database entry.  If the input is 'unset' the timezone will use the 'localtime' that's defined in your RightScale account under Settings -> User -> Preferences tab.  You can find a list of valid examples from the timezone pulldown bar in the Preferences tab. The server will not be updated for daylight savings time.  Ex: US/Pacific, US/Eastern",
+      "type": "string",
       "recipes": [
         "system::timezone",
         "system::default"
       ],
+      "calculated": false,
       "choice": [
         "Africa/Casablanca",
         "America/Bogota",
@@ -177,20 +153,44 @@
         "localtime"
       ],
       "default": "UTC",
-      "type": "string",
-      "calculated": false
+      "description": "Sets the system time to the timezone of the specified input, which must be a valid zoneinfo/tz database entry.  If the input is 'unset' the timezone will use the 'localtime' that's defined in your RightScale account under Settings -> User -> Preferences tab.  You can find a list of valid examples from the timezone pulldown bar in the Preferences tab. The server will not be updated for daylight savings time.  Ex: US/Pacific, US/Eastern",
+      "display_name": "Timezone"
+    },
+    "system/packages/install_compile_time": {
+      "required": "optional",
+      "type": "array",
+      "recipes": [
+        "system::install_packages"
+      ],
+      "calculated": false,
+      "choice": [
+
+      ],
+      "description": "An array of system packages to install with the package resource in compile phase.",
+      "display_name": "Install Packages Compile Phase"
     }
+  },
+  "suggestions": {
+  },
+  "maintainer_email": "chris@xhost.com.au",
+  "groupings": {
+  },
+  "maintainer": "Chris Fordham",
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "description": "Installs/Configures system elements such as the hostname and timezone.",
+  "conflicting": {
+  },
+  "recommendations": {
+  },
+  "replacing": {
   },
   "platforms": {
     "archlinux": ">= 0.0.0",
-    "redhat": ">= 0.0.0",
     "fedora": ">= 0.0.0",
     "ubuntu": ">= 0.0.0",
+    "centos": ">= 0.0.0",
     "debian": ">= 0.0.0",
-    "centos": ">= 0.0.0"
+    "redhat": ">= 0.0.0"
   },
-  "maintainer_email": "chris@xhost.com.au",
-  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "name": "system",
-  "maintainer": "Chris Fordham"
+  "version": "0.0.1"
 }
