@@ -1,41 +1,41 @@
 {
-  "providing": {
-  },
-  "license": "Apache 2.0",
-  "name": "subversion",
-  "recipes": {
-    "subversion::client": "Subversion Client installs subversion and some extra svn libs",
-    "subversion": "Includes the client recipe.",
-    "subversion::server": "Subversion Server (Apache2 mod_dav_svn)"
-  },
-  "dependencies": {
-    "windows": ">= 0.0.0",
-    "apache2": ">= 0.0.0"
-  },
-  "attributes": {
+  "groupings": {
   },
   "suggestions": {
   },
-  "maintainer_email": "cookbooks@opscode.com",
-  "groupings": {
+  "attributes": {
   },
+  "dependencies": {
+    "apache2": ">= 0.0.0",
+    "windows": ">= 0.0.0"
+  },
+  "recipes": {
+    "subversion": "Includes the client recipe.",
+    "subversion::client": "Subversion Client installs subversion and some extra svn libs",
+    "subversion::server": "Subversion Server (Apache2 mod_dav_svn)"
+  },
+  "name": "subversion",
   "maintainer": "Opscode, Inc.",
-  "long_description": "",
-  "description": "Installs subversion",
+  "providing": {
+  },
   "conflicting": {
   },
+  "version": "1.0.2",
   "recommendations": {
   },
-  "replacing": {
-  },
+  "license": "Apache 2.0",
   "platforms": {
-    "windows": ">= 0.0.0",
     "fedora": ">= 0.0.0",
-    "ubuntu": ">= 0.0.0",
-    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "windows": ">= 0.0.0",
     "suse": ">= 0.0.0",
     "debian": ">= 0.0.0",
-    "redhat": ">= 0.0.0"
+    "centos": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
   },
-  "version": "1.0.2"
+  "description": "Installs subversion",
+  "replacing": {
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "long_description": ""
 }

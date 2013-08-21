@@ -1,42 +1,43 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apache2 (1.6.0)
+    apache2 (1.7.0)
     apt (2.1.0)
-    build-essential (1.3.4)
+    build-essential (1.4.0)
     chef_handler (1.1.4)
     cron (1.2.4)
     dmg (1.1.0)
-    git (2.3.0)
+    git (2.5.2)
       build-essential (>= 0.0.0)
       dmg (>= 0.0.0)
-      runit (~> 1.0)
+      runit (>= 1.0)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
-    mysql (2.1.2)
-      build-essential (>= 0.0.0)
+    mysql (3.0.2)
+      build-essential (> 1.1.0)
       openssl (>= 0.0.0)
     openssl (1.0.2)
-    php (1.1.8)
+    php (1.2.2)
       build-essential (>= 0.0.0)
       mysql (>= 0.0.0)
       xml (>= 0.0.0)
-    runit (1.1.0)
+    runit (1.1.6)
       build-essential (>= 0.0.0)
+      yum (>= 0.0.0)
     subversion (1.0.2)
       apache2 (>= 0.0.0)
       windows (>= 0.0.0)
-    windows (1.8.4)
+    windows (1.10.0)
       chef_handler (>= 0.0.0)
     xml (1.1.2)
       build-essential (>= 0.0.0)
-    yum (2.2.0)
+    yum (2.3.0)
 
 GIT
   remote: https://github.com/flaccid/cookbooks
   path: cookbooks/php_app
   ref: master
-  sha: 6ee9d9ba41497c24b4ea8cbea512bf0fc3401d62
+  sha: 91eabc36fdb6c7bb36b6007eef6a6a9656070b05
   specs:
     php_app (0.1.0)
       application (>= 0.0.0)
@@ -56,17 +57,18 @@ GIT
 GIT
   remote: https://github.com/opscode-cookbooks/application
   ref: master
-  sha: 56a643965ccfc0d326be802258bfd3d26501d3c9
+  sha: 94c87b50d395d6de03ab5ae6940cbafcedb010f6
   specs:
-    application (2.0.1)
+    application (3.0.1)
 
 GIT
   remote: https://github.com/opscode-cookbooks/application_php
   ref: master
-  sha: 87dc9a0d55ca24afc15bf2c2c2e133c94b59e0cc
+  sha: 641f56fa5280a37f0df42d7e3ffd68b1943dd6c9
   specs:
-    application_php (1.0.4)
+    application_php (2.0.1)
       apache2 (>= 0.0.0)
+      application (~> 3.0)
       php (>= 0.0.0)
 
 DEPENDENCIES

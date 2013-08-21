@@ -1,87 +1,40 @@
 {
-  "providing": {
+  "groupings": {
   },
-  "license": "Apache 2.0",
-  "name": "system",
-  "recipes": {
-    "system::default": "Set the system hostname and timezone.",
-    "system::update_package_list": "Updates the system's list of packages in the package manager's cache.",
-    "system::upgrade_packages": "Upgrades the system's installed packages.",
-    "system::install_packages": "Installs packages to the system with it's native package manager.",
-    "system::hostname": "Sets the system hostname.",
-    "system::timezone": "Sets the system timezone."
-  },
-  "dependencies": {
-    "apt": ">= 0.0.0",
-    "cron": ">= 0.0.0"
+  "suggestions": {
   },
   "attributes": {
-    "system/short_hostname": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "system::hostname",
-        "system::default"
-      ],
-      "calculated": false,
+    "system/packages/install_compile_time": {
+      "required": "optional",
+      "type": "array",
       "choice": [
 
       ],
-      "default": "localhost",
-      "description": "The short hostname that you would like this node to have, e.g. kryten",
-      "display_name": "Short Hostname"
+      "recipes": [
+        "system::install_packages"
+      ],
+      "calculated": false,
+      "description": "An array of system packages to install with the package resource in compile phase.",
+      "display_name": "Install Packages Compile Phase"
     },
     "system/upgrade_packages": {
       "required": "optional",
       "type": "string",
-      "recipes": [
-        "system::upgrade_packages"
-      ],
-      "calculated": false,
       "choice": [
         "true",
         "false"
       ],
       "default": "true",
+      "recipes": [
+        "system::upgrade_packages"
+      ],
+      "calculated": false,
       "description": "Whether or not the system::upgrade_packages recipe will physically update the system's installed packages (in compile time).",
       "display_name": "Upgrade Packages"
-    },
-    "system/packages/install": {
-      "required": "optional",
-      "type": "array",
-      "recipes": [
-        "system::install_packages"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "description": "An array of system packages to install with the package resource in execute phase.",
-      "display_name": "Install Packages"
-    },
-    "system/domain_name": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "system::hostname",
-        "system::default"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "localdomain",
-      "description": "The domain name that you would like this node to have, e.g. domain.suf. Note: Only set a valid domain name to satisfy the resolution of a FQDN; use ignore:ignore for no domain name.",
-      "display_name": "Domain Name"
     },
     "system/timezone": {
       "required": "optional",
       "type": "string",
-      "recipes": [
-        "system::timezone",
-        "system::default"
-      ],
-      "calculated": false,
       "choice": [
         "Africa/Casablanca",
         "America/Bogota",
@@ -153,44 +106,91 @@
         "localtime"
       ],
       "default": "UTC",
+      "recipes": [
+        "system::timezone",
+        "system::default"
+      ],
+      "calculated": false,
       "description": "Sets the system time to the timezone of the specified input, which must be a valid zoneinfo/tz database entry.  If the input is 'unset' the timezone will use the 'localtime' that's defined in your RightScale account under Settings -> User -> Preferences tab.  You can find a list of valid examples from the timezone pulldown bar in the Preferences tab. The server will not be updated for daylight savings time.  Ex: US/Pacific, US/Eastern",
       "display_name": "Timezone"
     },
-    "system/packages/install_compile_time": {
+    "system/packages/install": {
       "required": "optional",
       "type": "array",
+      "choice": [
+
+      ],
       "recipes": [
         "system::install_packages"
       ],
       "calculated": false,
+      "description": "An array of system packages to install with the package resource in execute phase.",
+      "display_name": "Install Packages"
+    },
+    "system/short_hostname": {
+      "required": "recommended",
+      "type": "string",
       "choice": [
 
       ],
-      "description": "An array of system packages to install with the package resource in compile phase.",
-      "display_name": "Install Packages Compile Phase"
+      "default": "localhost",
+      "recipes": [
+        "system::hostname",
+        "system::default"
+      ],
+      "calculated": false,
+      "description": "The short hostname that you would like this node to have, e.g. kryten",
+      "display_name": "Short Hostname"
+    },
+    "system/domain_name": {
+      "required": "recommended",
+      "type": "string",
+      "choice": [
+
+      ],
+      "default": "localdomain",
+      "recipes": [
+        "system::hostname",
+        "system::default"
+      ],
+      "calculated": false,
+      "description": "The domain name that you would like this node to have, e.g. domain.suf. Note: Only set a valid domain name to satisfy the resolution of a FQDN; use ignore:ignore for no domain name.",
+      "display_name": "Domain Name"
     }
   },
-  "suggestions": {
+  "dependencies": {
+    "apt": ">= 0.0.0",
+    "cron": ">= 0.0.0"
   },
-  "maintainer_email": "chris@xhost.com.au",
-  "groupings": {
+  "recipes": {
+    "system::timezone": "Sets the system timezone.",
+    "system::update_package_list": "Updates the system's list of packages in the package manager's cache.",
+    "system::install_packages": "Installs packages to the system with it's native package manager.",
+    "system::hostname": "Sets the system hostname.",
+    "system::default": "Set the system hostname and timezone.",
+    "system::upgrade_packages": "Upgrades the system's installed packages."
   },
+  "name": "system",
   "maintainer": "Chris Fordham",
-  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n",
-  "description": "Installs/Configures system elements such as the hostname and timezone.",
+  "providing": {
+  },
   "conflicting": {
   },
+  "version": "0.0.1",
   "recommendations": {
   },
-  "replacing": {
-  },
+  "license": "Apache 2.0",
   "platforms": {
-    "archlinux": ">= 0.0.0",
     "fedora": ">= 0.0.0",
-    "ubuntu": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
     "centos": ">= 0.0.0",
     "debian": ">= 0.0.0",
-    "redhat": ">= 0.0.0"
+    "archlinux": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
   },
-  "version": "0.0.1"
+  "description": "Installs/Configures system elements such as the hostname and timezone.",
+  "replacing": {
+  },
+  "maintainer_email": "chris@xhost.com.au",
+  "long_description": "Description\n===========\n\nRequirements\n============\n\nAttributes\n==========\n\nUsage\n=====\n\n"
 }

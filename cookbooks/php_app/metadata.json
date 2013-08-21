@@ -1,217 +1,217 @@
 {
-  "providing": {
+  "groupings": {
   },
-  "license": "Apache 2.0",
-  "name": "php_app",
-  "recipes": {
-    "php_app": "Sets up the PHP application including installation and configuration.",
-    "php_app::application": "Configures the PHP application via the application resource only.",
-    "php_app::php_mysql": "Installs/configures the PHP/MySQL requirements if the application uses MySQL."
-  },
-  "dependencies": {
-    "subversion": ">= 0.0.0",
-    "git": ">= 0.0.0",
-    "application": ">= 0.0.0",
-    "application_php": ">= 0.0.0"
+  "suggestions": {
   },
   "attributes": {
-    "php_app/name": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "phpapp",
-      "description": "The PHP application's name.",
-      "display_name": "PHP Application Name"
-    },
-    "php_app/webapp_template": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "default": "web_app_basic.conf.erb",
-      "description": "The template to use for httpd.",
-      "display_name": "PHP Application HTTPd template"
-    },
-    "php_app/system_user": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-        "root",
-        "www",
-        "httpd",
-        "apache2"
-      ],
-      "default": "root",
-      "description": "The system user to own the application.",
-      "display_name": "PHP Application User"
-    },
     "php_app/db/adapter": {
       "required": "recommended",
       "type": "string",
+      "choice": [
+
+      ],
       "recipes": [
         "php_app::application"
       ],
       "calculated": false,
-      "choice": [
-
-      ],
       "description": "The database adapter for the application.",
-      "display_name": "PHP Application database adapter"
-    },
-    "php_app/packages": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "description": "Extra system packages to install needed by the PHP application.",
-      "display_name": "PHP Application extra packages"
-    },
-    "php_app/revision": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "description": "The revision of the web application's repository to checkout.",
-      "display_name": "PHP Application Revision"
-    },
-    "php_app/system_group": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-        "root",
-        "www",
-        "httpd",
-        "apache2"
-      ],
-      "default": "root",
-      "description": "The system group to own the application.",
-      "display_name": "PHP Application Group"
+      "display_name": "PHP Application DB adapter"
     },
     "php_app/path": {
       "required": "recommended",
       "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
       "choice": [
         "/var/www",
         "/srv/httpd"
       ],
       "default": "/var/www",
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
       "description": "The filesystem path to install the PHP application to.",
       "display_name": "PHP Application Path"
     },
-    "php_app/db/username": {
-      "required": "required",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "description": "The database username for the application.",
-      "display_name": "PHP Application username"
-    },
-    "php_app/db/schema": {
+    "php_app/system_user": {
       "required": "recommended",
       "type": "string",
+      "choice": [
+        "root",
+        "www",
+        "httpd",
+        "apache2"
+      ],
+      "default": "root",
       "recipes": [
         "php_app::application"
       ],
       "calculated": false,
-      "choice": [
-
-      ],
-      "description": "The database schema for the application.",
-      "display_name": "PHP Application schema"
-    },
-    "php_app/db/password": {
-      "required": "required",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "description": "The database password for the application.",
-      "display_name": "PHP Application password"
-    },
-    "php_app/db/host": {
-      "required": "recommended",
-      "type": "string",
-      "recipes": [
-        "php_app::application"
-      ],
-      "calculated": false,
-      "choice": [
-
-      ],
-      "description": "The database hostname for the application.",
-      "display_name": "PHP Application database host"
+      "description": "The system user to own the application.",
+      "display_name": "PHP Application User"
     },
     "php_app/repository_url": {
       "required": "recommended",
       "type": "string",
+      "choice": [
+
+      ],
       "recipes": [
         "php_app::application"
       ],
       "calculated": false,
+      "description": "URL to the web application's repository to checkout.",
+      "display_name": "PHP Application Repository URL"
+    },
+    "php_app/db/schema": {
+      "required": "recommended",
+      "type": "string",
       "choice": [
 
       ],
-      "description": "URL to the web application's repository to checkout.",
-      "display_name": "PHP Application Repository URL"
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "The database schema for the application.",
+      "display_name": "PHP Application DB schema"
+    },
+    "php_app/system_group": {
+      "required": "recommended",
+      "type": "string",
+      "choice": [
+        "root",
+        "www",
+        "httpd",
+        "apache2"
+      ],
+      "default": "root",
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "The system group to own the application.",
+      "display_name": "PHP Application Group"
+    },
+    "php_app/revision": {
+      "required": "recommended",
+      "type": "string",
+      "choice": [
+
+      ],
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "The revision of the web application's repository to checkout.",
+      "display_name": "PHP Application Revision"
+    },
+    "php_app/webapp_template": {
+      "required": "recommended",
+      "type": "string",
+      "choice": [
+
+      ],
+      "default": "web_app_basic.conf.erb",
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "The template to use for httpd.",
+      "display_name": "PHP Application HTTPd template"
+    },
+    "php_app/db/host": {
+      "required": "recommended",
+      "type": "string",
+      "choice": [
+
+      ],
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "The database hostname for the application.",
+      "display_name": "PHP Application DB host"
+    },
+    "php_app/db/password": {
+      "required": "optional",
+      "type": "string",
+      "choice": [
+
+      ],
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "The database password for the application.",
+      "display_name": "PHP Application DB password"
+    },
+    "php_app/db/username": {
+      "required": "optional",
+      "type": "string",
+      "choice": [
+
+      ],
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "The database username for the application.",
+      "display_name": "PHP Application DB username"
+    },
+    "php_app/name": {
+      "required": "recommended",
+      "type": "string",
+      "choice": [
+
+      ],
+      "default": "phpapp",
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "The PHP application's name.",
+      "display_name": "PHP Application Name"
+    },
+    "php_app/packages": {
+      "required": "recommended",
+      "type": "string",
+      "choice": [
+
+      ],
+      "recipes": [
+        "php_app::application"
+      ],
+      "calculated": false,
+      "description": "Extra system packages to install needed by the PHP application.",
+      "display_name": "PHP Application extra packages"
     }
   },
-  "suggestions": {
+  "dependencies": {
+    "subversion": ">= 0.0.0",
+    "application": ">= 0.0.0",
+    "application_php": ">= 0.0.0",
+    "git": ">= 0.0.0"
   },
-  "maintainer_email": "chris@xhost.com.au",
-  "groupings": {
+  "recipes": {
+    "php_app": "Sets up the PHP application including installation and configuration.",
+    "php_app::php_mysql": "Installs/configures the PHP/MySQL requirements if the application uses MySQL.",
+    "php_app::application": "Configures the PHP application via the application resource only."
   },
+  "name": "php_app",
   "maintainer": "Chris Fordham",
-  "long_description": "php_app Cookbook\n================\nTODO: Enter the cookbook description here.\n\ne.g.\nThis cookbook makes your favorite breakfast sandwhich.\n\nRequirements\n------------\nTODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.\n\ne.g.\n#### packages\n- `toaster` - php_app needs toaster to brown your bagel.\n\nAttributes\n----------\nTODO: List you cookbook attributes here.\n\ne.g.\n#### php_app::default\n<table>\n  <tr>\n    <th>Key</th>\n    <th>Type</th>\n    <th>Description</th>\n    <th>Default</th>\n  </tr>\n  <tr>\n    <td><tt>['php_app']['bacon']</tt></td>\n    <td>Boolean</td>\n    <td>whether to include bacon</td>\n    <td><tt>true</tt></td>\n  </tr>\n</table>\n\nUsage\n-----\n#### php_app::default\nTODO: Write usage instructions for each cookbook.\n\ne.g.\nJust include `php_app` in your node's `run_list`:\n\n```json\n{\n  \"name\":\"my_node\",\n  \"run_list\": [\n    \"recipe[php_app]\"\n  ]\n}\n```\n\nContributing\n------------\nTODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.\n\ne.g.\n1. Fork the repository on Github\n2. Create a named feature branch (like `add_component_x`)\n3. Write you change\n4. Write tests for your change (if applicable)\n5. Run the tests, ensuring they all pass\n6. Submit a Pull Request using Github\n\nLicense and Authors\n-------------------\nAuthors: TODO: List authors\n",
-  "description": "Installs/Configures php_app",
+  "providing": {
+  },
   "conflicting": {
   },
+  "version": "0.1.0",
   "recommendations": {
   },
-  "replacing": {
-  },
+  "license": "Apache 2.0",
   "platforms": {
   },
-  "version": "0.1.0"
+  "description": "Installs/Configures php_app",
+  "replacing": {
+  },
+  "maintainer_email": "chris@xhost.com.au",
+  "long_description": "php_app Cookbook\n================\nTODO: Enter the cookbook description here.\n\ne.g.\nThis cookbook makes your favorite breakfast sandwhich.\n\nRequirements\n------------\nTODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.\n\ne.g.\n#### packages\n- `toaster` - php_app needs toaster to brown your bagel.\n\nAttributes\n----------\nTODO: List you cookbook attributes here.\n\ne.g.\n#### php_app::default\n<table>\n  <tr>\n    <th>Key</th>\n    <th>Type</th>\n    <th>Description</th>\n    <th>Default</th>\n  </tr>\n  <tr>\n    <td><tt>['php_app']['bacon']</tt></td>\n    <td>Boolean</td>\n    <td>whether to include bacon</td>\n    <td><tt>true</tt></td>\n  </tr>\n</table>\n\nUsage\n-----\n#### php_app::default\nTODO: Write usage instructions for each cookbook.\n\ne.g.\nJust include `php_app` in your node's `run_list`:\n\n```json\n{\n  \"name\":\"my_node\",\n  \"run_list\": [\n    \"recipe[php_app]\"\n  ]\n}\n```\n\nContributing\n------------\nTODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.\n\ne.g.\n1. Fork the repository on Github\n2. Create a named feature branch (like `add_component_x`)\n3. Write you change\n4. Write tests for your change (if applicable)\n5. Run the tests, ensuring they all pass\n6. Submit a Pull Request using Github\n\nLicense and Authors\n-------------------\nAuthors: TODO: List authors\n"
 }
