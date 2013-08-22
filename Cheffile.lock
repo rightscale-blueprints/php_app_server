@@ -2,7 +2,6 @@ SITE
   remote: http://community.opscode.com/api/v1
   specs:
     apache2 (1.7.0)
-    apt (2.1.0)
     build-essential (1.4.0)
     chef_handler (1.1.4)
     cron (1.2.4)
@@ -56,20 +55,32 @@ GIT
 
 GIT
   remote: https://github.com/opscode-cookbooks/application
-  ref: master
-  sha: 94c87b50d395d6de03ab5ae6940cbafcedb010f6
+  ref: 3.0.0
+  sha: 4f46a4523b2133e1e7a3d4d3d8b3a60dd7ff5997
   specs:
-    application (3.0.1)
+    application (3.0.0)
 
 GIT
   remote: https://github.com/opscode-cookbooks/application_php
-  ref: master
-  sha: 641f56fa5280a37f0df42d7e3ffd68b1943dd6c9
+  ref: 2.0.0
+  sha: 3dba7d749dac3e47cdae9750f9d3f913c672d478
   specs:
-    application_php (2.0.1)
+    application_php (2.0.0)
       apache2 (>= 0.0.0)
       application (~> 3.0)
       php (>= 0.0.0)
+
+GIT
+  remote: https://github.com/opscode-cookbooks/git
+  ref: 2.5.2
+  sha: ffb6add41b386c89debe1203291d397f970d3c5f
+  specs:
+    apt (2.5.2)
+      build-essential (>= 0.0.0)
+      dmg (>= 0.0.0)
+      runit (>= 1.0)
+      windows (>= 0.0.0)
+      yum (>= 0.0.0)
 
 DEPENDENCIES
   application (>= 0)

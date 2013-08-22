@@ -1,9 +1,8 @@
 #
-# Cookbook Name:: apt
+# Cookbook Name:: git
 # Recipe:: default
 #
-# Copyright 2008-2011, Opscode, Inc.
-# Copyright 2009, Bryan McLellan <btm@loftninjas.org>
+# Copyright 2008-2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,53 +15,32 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-# Run apt-get update to create the stamp file
-execute "apt-get-update" do
-  command "apt-get update"
-  ignore_failure true
-  not_if do ::File.exists?('/var/lib/apt/periodic/update-success-stamp') end
-end
-
-# For other recipes to call to force an update
-execute "apt-get update" do
-  command "apt-get update"
-  ignore_failure true
-  action :nothing
-end
-
-# Automatically remove packages that are no longer needed for dependencies
-execute "apt-get autoremove" do
-  command "apt-get -y autoremove"
-  action :nothing
-end
-
-# Automatically remove .deb files for packages no longer on your system
-execute "apt-get autoclean" do
-  command "apt-get -y autoclean"
-  action :nothing
-end
-
-# provides /var/lib/apt/periodic/update-success-stamp on apt-get update
-package "update-notifier-common" do
-  notifies :run, 'execute[apt-get-update]', :immediately
-end
-
-execute "apt-get-update-periodic" do
-  command "apt-get update"
-  ignore_failure true
-  only_if do
-    ::File.exists?('/var/lib/apt/periodic/update-success-stamp') &&
-    ::File.mtime('/var/lib/apt/periodic/update-success-stamp') < Time.now - 86400
+case node['platform_family']
+when "debian"
+  if node['platform'] == "ubuntu" && node['platform_version'].to_f < 10.10
+    package "git-core"
+  else
+    package "git"
   end
-end
-
-%w{/var/cache/local /var/cache/local/preseeding}.each do |dirname|
-  directory dirname do
-    owner "root"
-    group "root"
-    mode  00755
-    action :create
+when "rhel","fedora"
+  case node['platform_version'].to_i
+  when 5
+    include_recipe "yum::epel"
   end
+  package "git"
+when "windows"
+  include_recipe 'git::windows'
+when "mac_os_x"
+  dmg_package "GitOSX-Installer" do
+    app node['git']['osx_dmg']['app_name']
+    package_id node['git']['osx_dmg']['package_id']
+    volumes_dir node['git']['osx_dmg']['volumes_dir']
+    source node['git']['osx_dmg']['url']
+    checksum node['git']['osx_dmg']['checksum']
+    type "pkg"
+    action :install
+  end
+else
+  package "git"
 end

@@ -1,52 +1,52 @@
 {
-  "groupings": {
-  },
-  "suggestions": {
-  },
-  "attributes": {
+  "version": "1.2.2",
+  "recipes": {
+    "php::module_pgsql": "Install the php5-pgsql packag",
+    "php::module_mysql": "Install the php5-mysql package",
+    "php::module_ldap": "Install the php5-ldap package",
+    "php::package": "Installs php using packages.",
+    "php::module_apc": "Install the php5-apc package",
+    "php::source": "Installs php from source.",
+    "php::module_fpdf": "Install the php-fpdf package",
+    "php": "Installs php",
+    "php::module_gd": "Install the php5-gd package",
+    "php::module_sqlite3": "Install the php5-sqlite3 package",
+    "php::module_fileinfo": "Install the php5-fileinfo package",
+    "php::module_curl": "Install the php5-curl package",
+    "php::module_memcache": "Install the php5-memcache package"
   },
   "dependencies": {
-    "mysql": ">= 0.0.0",
+    "build-essential": ">= 0.0.0",
     "xml": ">= 0.0.0",
-    "build-essential": ">= 0.0.0"
+    "mysql": ">= 0.0.0"
   },
-  "recipes": {
-    "php::module_sqlite3": "Install the php5-sqlite3 package",
-    "php::module_ldap": "Install the php5-ldap package",
-    "php::module_fileinfo": "Install the php5-fileinfo package",
-    "php": "Installs php",
-    "php::module_memcache": "Install the php5-memcache package",
-    "php::module_pgsql": "Install the php5-pgsql packag",
-    "php::module_apc": "Install the php5-apc package",
-    "php::module_gd": "Install the php5-gd package",
-    "php::module_fpdf": "Install the php-fpdf package",
-    "php::source": "Installs php from source.",
-    "php::module_mysql": "Install the php5-mysql package",
-    "php::package": "Installs php using packages.",
-    "php::module_curl": "Install the php5-curl package"
+  "description": "Installs and maintains php and php modules",
+  "attributes": {
   },
-  "name": "php",
-  "maintainer": "Opscode, Inc.",
-  "providing": {
+  "platforms": {
+    "fedora": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0",
+    "amazon": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "scientific": ">= 0.0.0",
+    "debian": ">= 0.0.0"
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "groupings": {
   },
   "conflicting": {
   },
-  "version": "1.2.2",
   "recommendations": {
   },
+  "providing": {
+  },
+  "long_description": "",
+  "name": "php",
+  "suggestions": {
+  },
   "license": "Apache 2.0",
-  "platforms": {
-    "amazon": ">= 0.0.0",
-    "fedora": ">= 0.0.0",
-    "redhat": ">= 0.0.0",
-    "scientific": ">= 0.0.0",
-    "centos": ">= 0.0.0",
-    "debian": ">= 0.0.0",
-    "ubuntu": ">= 0.0.0"
-  },
-  "description": "Installs and maintains php and php modules",
+  "maintainer": "Opscode, Inc.",
   "replacing": {
-  },
-  "maintainer_email": "cookbooks@opscode.com",
-  "long_description": ""
+  }
 }

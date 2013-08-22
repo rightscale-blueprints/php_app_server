@@ -3,15 +3,17 @@
 
 site 'http://community.opscode.com/api/v1'
 
-cookbook 'apt'
+cookbook 'apt',
+  :git => 'https://github.com/opscode-cookbooks/git',
+  :ref => '2.5.2'
 
 cookbook 'application',
   :git => 'https://github.com/opscode-cookbooks/application',
-  :ref => 'master'
+  :ref => '3.0.0'
   
 cookbook 'application_php',
   :git => 'https://github.com/opscode-cookbooks/application_php',
-  :ref => 'master'
+  :ref => '2.0.0'
   
 cookbook 'php_app',
   :git => 'https://github.com/flaccid/cookbooks',

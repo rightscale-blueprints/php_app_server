@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: apt
-# Recipe:: cacher-ng
+# Cookbook Name:: git
+# Recipe:: windows
 #
-# Copyright 2008-2013, Opscode, Inc.
+# Copyright 2008-2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,29 +15,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-node.set['apt']['caching_server'] = true
-
-package "apt-cacher-ng" do
+windows_package node['git']['display_name'] do
   action :install
+  source node['git']['url']
+  checksum node['git']['checksum']
+  installer_type :inno
 end
 
-directory node['apt']['cacher_dir'] do
-  owner "apt-cacher-ng"
-  group "apt-cacher-ng"
-  mode 0755
-end
+# Git is installed to Program Files (x86) on 64-bit machines and
+# 'Program Files' on 32-bit machines
+PROGRAM_FILES = ENV['ProgramFiles(x86)'] || ENV['ProgramFiles']
 
-template "/etc/apt-cacher-ng/acng.conf" do
-  source "acng.conf.erb"
-  owner "root"
-  group "root"
-  mode 00644
-  notifies :restart, "service[apt-cacher-ng]", :immediately
-end
-
-service "apt-cacher-ng" do
-  supports :restart => true, :status => false
-  action [:enable, :start]
+windows_path "#{ PROGRAM_FILES }\\Git\\Cmd" do
+  action :add
 end

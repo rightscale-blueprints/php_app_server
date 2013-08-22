@@ -1,30 +1,35 @@
-name              "apt"
+name              "git"
 maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
-description       "Configures apt and apt services and LWRPs for managing apt repositories and preferences"
+description       "Installs git and/or sets up a Git server daemon"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "2.1.0"
-recipe            "apt", "Runs apt-get update during compile phase and sets up preseed directories"
-recipe            "apt::cacher-ng", "Set up an apt-cacher-ng caching proxy"
-recipe            "apt::cacher-client", "Client for the apt::cacher-ng caching proxy"
+version           "2.5.2"
+recipe            "git", "Installs git"
+recipe            "git::server", "Sets up a runit_service for git daemon"
+recipe            "git::source", "Installs git from source"
 
-%w{ ubuntu debian }.each do |os|
+%w{ amazon arch centos debian fedora redhat scientific oracle amazon ubuntu windows }.each do |os|
   supports os
 end
 
-attribute "apt/cacher-client/restrict_environment",
-  :description => "Whether to restrict the search for the caching server to the same environment as this node",
-  :default => "false"
+supports "mac_os_x", ">= 10.6.0"
 
-attribute "apt/cacher_port",
-  :description => "Default listen port for the caching server",
-  :default => "3142"
+%w{ dmg build-essential yum windows }.each do |cookbook|
+  depends cookbook
+end
 
-attribute "apt/key_proxy",
-  :description => "Passed as the proxy passed to GPG for the apt_repository resource",
-  :default => ""
+depends "runit", ">= 1.0"
 
-attribute "apt/caching_server",
-  :description => "Set this to true if the node is a caching server",
-  :default => "false"
+attribute "git/server/base_path",
+  :display_name => "Git Daemon Base Path",
+  :description => "A directory containing git repositories to be exposed by the git-daemon",
+  :default => "/srv/git",
+  :recipes => ["git::server"]
+
+attribute "git/server/export_all",
+  :display_name => "Git Daemon Export All",
+  :description => "Adds the --export-all option to the git-daemon parameters, making all repositories publicly readable even if they lack the \"git-daemon-export-ok\" file",
+  :choice => ["true", "false"],
+  :default => "true",
+  :recipes => ["git::server"]
